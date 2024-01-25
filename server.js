@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 const { startDatabase, stopDatabase, isConnected } = require('./db');
 const app = express();
 
@@ -30,8 +31,13 @@ if (require.main === module) {
   });
 }
 
-
-
-
-
 module.exports = app;
+
+const app = express();
+
+app.get('/', (req,res)=>{
+    res.send("Server is working hurray😊");
+});
+app.listen(8080,()=>{
+  console.log("Seems like port 8080 is working");
+})
