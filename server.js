@@ -23,7 +23,7 @@ process.on('SIGTERM', async () => {
 });
 
 if (require.main === module) {
-  app.listen(port, async () => {
+  app.listen(8000, async () => {
     await startDatabase();
 
     console.log(`🚀 server running on PORT: $`);
