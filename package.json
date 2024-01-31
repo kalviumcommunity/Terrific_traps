@@ -5,6 +5,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+
+    "start": "nodemon server.js"
+
     "start": "nodemon server.js",
 
   "name": "terrific_traps",
@@ -20,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
 
+
     "express": "^4.18.2"
 
     "express": "^4.18.2",
@@ -33,7 +37,6 @@
     "supertest": "^6.3.4"
 
     "express": "^4.18.2"
-
 
   }
 }
