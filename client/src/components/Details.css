@@ -1,0 +1,9 @@
+div{
+  background-color: aquamarine;
+  border: 2px;
+  border-radius: 16px;
+}
+h1{
+  font-size: larger;
+  text-shadow: 0 4px 4px;
+}
