@@ -10,3 +10,4 @@ https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjO94dttetfiDEj6njcmI4aiDO
 2) What are these things sleeves for legs without the boots.
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhVdN_yjdB-ArluD4LJbMQVeFEFjRIgcyPhg&usqp=CAUTerrific traps 
 
+Deployed link: https://terrific-trapss.pages.dev/
