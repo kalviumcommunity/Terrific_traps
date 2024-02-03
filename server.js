@@ -1,43 +1,34 @@
 const express = require('express');
-
-
-const { startDatabase, stopDatabase, isConnected } = require('./db');
+const { MongoClient } = require('mongodb');
+const cors = require('cors')
 const app = express();
+const port = 3000;
 
+app.use(cors())
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'o_O',
-    database: isConnected() ? 'connected' : 'disconnected'
+const uri = 'mongodb+srv://bhumir:bhumi@cluster0.u0lqlrf.mongodb.net/WeirdThings';
+
+const client = new MongoClient(uri, { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  tls : true,
+  tlsAllowInvalidCertificates: true,
+   });
+client.connect()
+  .then(() => {
+    console.log('Connected to MongoDB Atlas');
+    const database = client.db('WeirdThings');
+    const collection = database.collection('List');
+
+    app.get('/', async (req,res)=>{
+    const result = await collection.find({}).toArray();
+      res.json(result);
+    })
   })
+  .catch(err => {
+    console.error('Error connecting to MongoDB Atlas', err);
 });
 
-
-process.on('SIGINT', async () => {
-  await stopDatabase();
-  process.exit(0);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
-
-process.on('SIGTERM', async () => {
-  await stopDatabase();
-  process.exit(0);
-});
-
-if (require.main === module) {
-  app.listen(8000, async () => {
-    await startDatabase();
-
-    console.log(`🚀 server running on PORT: $`);
-  });
-}
-
-module.exports = app;
-
-const app = express();
-
-app.get('/', (req,res)=>{
-    res.send("Server is working hurray😊");
-});
-app.listen(8080,()=>{
-  console.log("Seems like port 8080 is working");
-})
