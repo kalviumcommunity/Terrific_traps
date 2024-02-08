@@ -9,6 +9,7 @@ function Home() {
       <div className="image">Image</div>
       <h2>Description : </h2>
       <p>The description will contain the reviews from the people who have bought these products and the ratings of the products.</p>
+      
     </div>
   )
 }

@@ -3,9 +3,10 @@ const { MongoClient } = require('mongodb');
 const cors = require('cors')
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser')
 
 app.use(cors())
-
+app.use(bodyParser.json())
 const uri = 'mongodb+srv://bhumir:bhumi@cluster0.u0lqlrf.mongodb.net/WeirdThings';
 
 const client = new MongoClient(uri, { 
@@ -22,6 +23,12 @@ client.connect()
 
     app.get('/', async (req,res)=>{
     const result = await collection.find({}).toArray();
+      res.json(result);
+    })
+
+    app.post('/', async (req,res) => {
+      const {ProductName, Reviews,WorstRatings, BestRatings} = req.body;
+      const result = await collection.insertOne({ProductName, Reviews,WorstRatings, BestRatings});
       res.json(result);
     })
   })

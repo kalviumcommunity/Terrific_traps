@@ -1,17 +1,20 @@
-import React from 'react'
-import './App.css'
-import Home from './components/Home'
-import Details from './components/Details.jsx'
-
+import React from "react";
+import Home from "./components/Home";
+import Details from "./components/Details.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Click from "./components/Click.jsx";
 function App() {
-
   return (
     <>
-      <Home/>
-      <Details/>
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/click" element={<Click />} />
+        </Routes>
+        <Details />
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
