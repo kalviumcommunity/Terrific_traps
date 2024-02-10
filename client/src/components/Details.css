@@ -41,3 +41,18 @@ h2{
   margin-left: 50px;
   margin-bottom: 50px;
 }
+.add{
+  padding-top: 10px;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 8px black;
+}
+.add:hover{
+  background-color: rgb(187, 240, 222);
+}
