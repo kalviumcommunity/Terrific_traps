@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Click() {
-  const [ProductName, setProductName] = useState();
+
+function Update() {
+  const [ProductName, setProductName] = useState({});
   const [Reviews, setReviews] = useState();
   const [WorstRatings, setWorstRatings] = useState();
   const [BestRatings, setBestRatings] = useState();
 
-  const find = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    fetch("http://localhost:3000")
+    .then((res)=>console.log(res))
+    .then((jsonData)=>setProductName(jsonData[0]))
+    .catch((err)=>console.log(err))
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +29,7 @@ function Click() {
       })
       .then((result) => {
         console.log(result);
-        find("/");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -70,7 +78,7 @@ function Click() {
 
           <div className="btn">
             <button className="btn" type="submit">
-              Add
+              Update
             </button>
           </div>
         </div>
@@ -79,4 +87,4 @@ function Click() {
   );
 }
 
-export default Click;
+export default Update;
