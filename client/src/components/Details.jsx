@@ -23,14 +23,17 @@ function Details() {
 
   return (
     <>
-    <div className="add">
+      <div className="add">
         <h1>Home Page</h1>
         <h3>
-          To add a new item
+          To add a new item 
           <Link to="/click">
             <b>Click Here</b>
           </Link>
         </h3>
+        <button>
+          <Link to = {`/update/${value}`}>Update</Link>
+        </button>
       </div>
       <div className="Flex">
         {value.map((item, id) => (
