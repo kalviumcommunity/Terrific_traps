@@ -47,8 +47,8 @@ button{
   background-color: rgb(138, 190, 130);
   box-shadow: 0 2px 4px;
   width: 100px; 
-    height: 50px; 
-    font-size: 16px;
+  height: 50px; 
+  font-size: 16px;
 }
 button:hover{
   background-color: rgb(166, 150, 247);
@@ -57,7 +57,7 @@ button:hover{
 body{
   background-color:rgb(132, 98, 98);
 }
-h2{
+h3{
   font-size: 30px;
   text-shadow: 0 4px 4px orange;
 }
@@ -119,19 +119,9 @@ h2{
   margin-left: 50px;
   margin-right: 50px;
   margin-bottom: 30px;
+  height: 350px;
 }
 
-.image{
-  line-height: 130px;
-  width: 120px;
-  text-shadow: 1px 1px;
-  border: 1px solid black;
-  text-align: center;
-  font-size: 25px;
-  font-weight: bold;
-  margin-left: 45%;
-  box-shadow: 0px 0px 2px 2px;
-}
 h1{
   text-shadow: 0 2px 4px ;
   text-shadow:  0 2px 4px olive;
@@ -160,17 +150,9 @@ p{
   border-radius: 5px;
   box-shadow: 0 8px 16px;
 }
-.design{
-  background-color: blanchedalmond;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+.click{
+  margin-left: 0px;
 }
-.design:hover{
-  background-color: rgb(187, 240, 222);
-  border-radius: 5px;
-  box-shadow: 0 8px 16px;
+.update{
+  margin-left: 100px;
 }
