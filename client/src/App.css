@@ -156,3 +156,7 @@ p{
 .update{
   margin-left: 100px;
 }
+h2{
+  font-size: 30px;
+  text-shadow: 0 4px 4px rgb(191, 227, 93);
+}
