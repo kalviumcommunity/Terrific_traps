@@ -14,14 +14,13 @@ function Update() {
   useEffect(()=>{
     fetch("http://localhost:3000")
     .then((res)=>console.log(res))
-    .then((jsonData)=>setProductName(jsonData[0]))
+    .then((jsonData)=>setProductName(jsonData))
     .catch((err)=>console.log(err))
   })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000", {
+    axios.post("http://localhost:3000", {
         ProductName: ProductName,
         Reviews: Reviews,
         WorstRatings: WorstRatings,
