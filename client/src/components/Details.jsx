@@ -63,9 +63,7 @@ function Details() {
 
   return (
     <>
-      <div className="design">
         <nav>
-          <h2>Welcome to Our Website</h2>
           {userData.name && <p>Name: {userData.name}</p>}
           {userData.email && <p>Email: {userData.email}</p>}
           {userData.password && <p>Password: {userData.password}</p>}
@@ -75,29 +73,28 @@ function Details() {
             </button>
           </Link>
         </nav>
-      </div>
 
       <div className="add">
         <h1>Home Page</h1>
         <h3>
-          To add a new item
-          <Link to="/click">
+          To add a new item</h3>
+          <button className="click"><Link to="/click">
             <b>Click Here</b>
-          </Link>
-        </h3>
-        <button>
+          </Link></button>
+        <button className="update">
           <Link to={`/update/${value}`}>Update</Link>
         </button>
       </div>
+      {console.log(value)}
       <div className="Flex">
         {value.map((item, id) => (
           <div key={id} className="flex">
             <div className="container">
-              <h2>{item["Product-Name"]}</h2>
+              <h2>{item["Product-Name"] || item["ProductName"]}</h2>
               <div className="data">
                 <p>{item.Reviews}</p>
-                <p>{item["Worst-Ratings"]}</p>
-                <p>{item["Best-Ratings"]}</p>
+                <p>{item["WorstRatings"] || item["Worst-Ratings"]}</p>
+                <p>{item["BestRatings"] || item["Best-Ratings"]}</p>
               </div>
             </div>
           </div>

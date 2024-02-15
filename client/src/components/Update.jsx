@@ -20,7 +20,7 @@ function Update() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3000", {
+    axios.post("http://localhost:3000/user", {
         ProductName: ProductName,
         Reviews: Reviews,
         WorstRatings: WorstRatings,
