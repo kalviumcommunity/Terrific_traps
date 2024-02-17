@@ -160,3 +160,26 @@ h2{
   font-size: 30px;
   text-shadow: 0 4px 4px rgb(191, 227, 93);
 }
+.drop{
+  background-color: rgb(118, 160, 147);
+  color: white;
+  padding: 5px;
+  border-radius: 2px;
+  width: 300px;
+  text-align: center;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px black;
+}
+.drop option{
+  background-color: rgb(118, 160, 147);
+  color: whitesmoke;
+}
+.drop:hover{
+  box-shadow: 0 4px 8px black;
+  background-color: rgb(165, 133, 195);
+}
+.logout{
+  margin: 20px;
+}

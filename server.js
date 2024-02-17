@@ -5,6 +5,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 const userSchema = Joi.object({
   ProductName: Joi.string().required(),
@@ -15,6 +16,7 @@ const userSchema = Joi.object({
 
 app.use(cors());
 app.use(bodyParser.json());
+const JWT_SECRET_KEY = 'Bhumi';
 
 const uri =
   'mongodb+srv://bhumir:bhumi@cluster0.u0lqlrf.mongodb.net/WeirdThings';
@@ -48,26 +50,29 @@ client
       res.json(show);
     });
 
-    app.post('/user', async (req, res) => {
-      try {
-        const { error, value } = userSchema.validate(req.body);
-        if (error) {
-          console.log(error.details);
-          return res.status(400).json({ error: error.details[0].message });
+    app.post('/login', (req, res) => {
+      const { email, password } = req.body;
+
+      const token = jwt.sign({ email }, JWT_SECRET_KEY, { expiresIn: '1h' });
+      res.cookie('token', token, { httpOnly: true });
+      res.json({ success: "JWT connected successful" });
+  });
+
+  function authenticateToken(req, res, next) {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({ error: 'Unauthorized: Missing token' });
+    }
+
+    jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ error: 'Forbidden: Invalid token' });
         }
-        const { ProductName, Reviews, WorstRatings, BestRatings } = req.body;
-        const result = await collection.insertOne({
-          ProductName,
-          Reviews,
-          WorstRatings,
-          BestRatings,
-        });
-        res.json(result);
-      } catch (error) {
-        console.error('Error processing request', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
+        req.user = decoded;
+        next();
     });
+  }
   })
   .catch((err) => {
     console.error('Error connecting to MongoDB Atlas', err);

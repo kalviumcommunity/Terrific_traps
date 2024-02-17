@@ -4,9 +4,11 @@ import axios from "axios";
 
 function Details() {
   const [value, setValue] = useState([]);
-  const [userData, setuserData] = useState([]);
+  const [userData, setUserData] = useState({});
+  const [input, setInput] = useState('All');
 
   useEffect(() => {
+    // Fetch user data from cookies
     const getCookie = (name) => {
       const cookieArray = document.cookie.split("; ");
       const cookie = cookieArray.find((row) => row.startsWith(name + "="));
@@ -18,10 +20,11 @@ function Details() {
 
     console.log("User Data:", { name, email, username });
 
-    setuserData({ name, email, username });
+    setUserData({ name, email, username });
   }, []);
 
   useEffect(() => {
+    // Fetch data from API
     async function getApi() {
       try {
         const res = await axios.get("http://localhost:3000/");
@@ -45,49 +48,55 @@ function Details() {
     console.log("Updated Cookies:", document.cookie);
   };
 
-  useEffect(() => {
-    console.log("Fetching data...");
-    fetch("http://localhost:3000/")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Data fetched successfully:", data);
-        setValue(data);
-      })
-      .catch((err) => console.error("Fetch error:", err));
-  }, []);
+  const dropDownItems = (e) => {
+    setInput(e.target.value)
+  };
+
+  // Filter items based on dropdown selection
+  const filteredItems = input === 'All' ? value : value.filter((item) => item.location === input);
 
   return (
     <>
-        <nav>
-          {userData.name && <p>Name: {userData.name}</p>}
-          {userData.email && <p>Email: {userData.email}</p>}
-          {userData.password && <p>Password: {userData.password}</p>}
-          <Link to="/login">
-            <button onClick={handleLogout} className="logout">
-              Logout
-            </button>
-          </Link>
-        </nav>
+      <nav>
+        {userData.name && <p>Name: {userData.name}</p>}
+        {userData.email && <p>Email: {userData.email}</p>}
+        {userData.username && <p>Username: {userData.username}</p>}
+        
+      </nav>
+      
+     <div className="btn">
+     <Link to="/login">
+          <button onClick={handleLogout} className="logout">
+            Logout
+          </button>
+        </Link>
+      <select value={input} onChange={dropDownItems} className="drop">
+        <option value="All">All</option>
+        <option value="Funny">Funny</option>
+        <option value="Weird">Weird</option>
+        <option value="Disgusting">Disgusting</option>
+        <option value="Unique">Unique</option>
+      </select>
+     </div>
 
       <div className="add">
         <h1>Home Page</h1>
-        <h3>
-          To add a new item</h3>
-          <button className="click"><Link to="/click">
+        <h3>To add a new item</h3>
+        <button className="click">
+          <Link to="/click">
             <b>Click Here</b>
-          </Link></button>
+          </Link>
+        </button>
         <button className="update">
-          <Link to={`/update/${value}`}>Update</Link>
+          {/* Pass appropriate item ID to the update page */}
+          <Link to={`/update/${value[0]?.id}`}>Update</Link>
         </button>
       </div>
-      {console.log(value)}
+
+      
+
       <div className="Flex">
-        {value.map((item, id) => (
+        {filteredItems.map((item, id) => (
           <div key={id} className="flex">
             <div className="container">
               <h2>{item["Product-Name"] || item["ProductName"]}</h2>
